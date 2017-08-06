@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accounting.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +11,14 @@ namespace Accounting.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<AccountingViewModel> accountingViewModels = new List<AccountingViewModel>()
+            {
+                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 1), Amount = 300 },
+                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 2), Amount = 16000 },
+                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 3), Amount = 8000 },
+            };
+
+            return View(accountingViewModels);
         }
 
         public ActionResult About()
