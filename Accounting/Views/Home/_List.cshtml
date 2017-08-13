@@ -9,14 +9,16 @@
                 <th>日期</th>
                 <th>金額</th>
             </tr>
-
-            @foreach (var item in Model.Select((value, idx) => new { idx, value }))
+            @{ 
+                var i = 0;
+            }
+            @foreach (var item in Model)
             {
                 <tr>
-                    <td>@(item.idx + 1)</td>
-                    <td>@item.value.Category</td>
-                    <td>@(item.value.AccountingDate.ToString("yyyy-MM-dd"))</td>
-                    <td>@item.value.Amount.ToString("N0")</td>
+                    <td>@(++i)</td>
+                    <td>@item.Category</td>
+                    <td>@(item.AccountingDate.ToString("yyyy-MM-dd"))</td>
+                    <td>@item.Amount.ToString("N0")</td>
                 </tr>
             }
 
