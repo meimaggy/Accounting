@@ -1,4 +1,6 @@
-﻿using Accounting.Models.ViewModels;
+﻿using Accounting.Models;
+using Accounting.Models.ViewModels;
+using Accounting.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +11,18 @@ namespace Accounting.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AccountBookService _accountBookService;
+
+        public HomeController()
+        {
+            var unitOfWork = new EFUnitOfWork();
+            _accountBookService = new AccountBookService(unitOfWork);
+        }
+
         public ActionResult Index()
         {
-            List<AccountingViewModel> accountingViewModels = new List<AccountingViewModel>()
-            {
-                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 1), Amount = 300 },
-                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 2), Amount = 16000 },
-                new AccountingViewModel() { Category = "支出", AccountingDate = new DateTime(2016, 1, 3), Amount = 8000 },
-            };
-
-            return View(accountingViewModels);
+            var result = _accountBookService.Lookup();    
+            return View(result);
         }
 
         public ActionResult About()
