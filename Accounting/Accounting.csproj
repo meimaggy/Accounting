@@ -152,20 +152,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBook.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountBook.Context.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountBook.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccountBook.tt</DependentUpon>
+      <DependentUpon>AccountBookModel1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountBook.Designer.cs">
+    <Compile Include="Models\AccountBookModel1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AccountBook.edmx</DependentUpon>
+      <DependentUpon>AccountBookModel1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountBookModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountBookModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountBookModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountBookModel1.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AccountingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -183,27 +186,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\AccountBook.Context.tt">
+    <Content Include="Models\AccountBookModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AccountBook.Context.cs</LastGenOutput>
-      <DependentUpon>AccountBook.edmx</DependentUpon>
+      <DependentUpon>AccountBookModel1.edmx</DependentUpon>
+      <LastGenOutput>AccountBookModel1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\AccountBook.tt">
+    <Content Include="Models\AccountBookModel1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AccountBook.edmx</DependentUpon>
-      <LastGenOutput>AccountBook.cs</LastGenOutput>
+      <DependentUpon>AccountBookModel1.edmx</DependentUpon>
+      <LastGenOutput>AccountBookModel1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\AccountBook.edmx">
+    <EntityDeploy Include="Models\AccountBookModel1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AccountBook.Designer.cs</LastGenOutput>
+      <LastGenOutput>AccountBookModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\AccountBook.edmx.diagram">
-      <DependentUpon>AccountBook.edmx</DependentUpon>
+    <Content Include="Models\AccountBookModel1.edmx.diagram">
+      <DependentUpon>AccountBookModel1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -234,7 +237,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_List.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
