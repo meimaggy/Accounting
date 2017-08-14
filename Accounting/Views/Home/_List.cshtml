@@ -1,7 +1,9 @@
-﻿@model IEnumerable<Accounting.Models.ViewModels.AccountingViewModel>
+﻿@model IPagedList<Accounting.Models.ViewModels.AccountingViewModel>
 
 <div class="row">
     <div class="col-md-12">
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "ProductList" }))
+        {
         <table class="table table-bordered table-hover">
             <tr>
                 <th>#</th>
@@ -15,13 +17,16 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@(++i)</td>
+                    <td>@(Model.PageSize * (Model.PageNumber-1) + ++i)</td>
                     <td>@item.Category</td>
                     <td>@(item.AccountingDate.ToString("yyyy-MM-dd"))</td>
                     <td>@item.Amount.ToString("N0")</td>
                 </tr>
             }
-
         </table>
+        <div class="pager">
+            @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount)
+        </div>
+    }
     </div>
 </div>
