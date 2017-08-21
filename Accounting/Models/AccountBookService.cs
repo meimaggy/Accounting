@@ -23,9 +23,10 @@ namespace Accounting.Models
             var query = _accountBookRep.LookupAll();
             var result = query.Select(accountBook => new AccountingViewModel()
             {
-                 Category = (Category)accountBook.Categoryyy,
-                 AccountingDate = accountBook.Dateee,
-                 Amount = accountBook.Amounttt,
+                Category = (Category)accountBook.Categoryyy,
+                AccountingDate = accountBook.Dateee,
+                Amount = accountBook.Amounttt,
+                Remark = accountBook.Remarkkk,
             }).ToList();
             return result;
         }
@@ -39,7 +40,7 @@ namespace Accounting.Models
                 Categoryyy = accountingViewModel.Category.GetHashCode(),
                 Dateee = accountingViewModel.AccountingDate,
                 Amounttt = accountingViewModel.Amount,
-                Remarkkk = "",
+                Remarkkk = accountingViewModel.Remark,
             };
 
             Add(result);
