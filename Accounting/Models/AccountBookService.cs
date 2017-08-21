@@ -20,8 +20,8 @@ namespace Accounting.Models
 
         public IEnumerable<AccountingViewModel> Lookup()
         {
-            var source = _accountBookRep.LookupAll();
-            var result = source.Select(accountBook => new AccountingViewModel()
+            var query = _accountBookRep.LookupAll();
+            var result = query.Select(accountBook => new AccountingViewModel()
             {
                  Category = accountBook.Categoryyy == 0 ? "支出" : "收入",
                  AccountingDate = accountBook.Dateee,
