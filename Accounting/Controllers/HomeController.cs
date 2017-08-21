@@ -30,7 +30,13 @@ namespace Accounting.Controllers
             var result = query.ToPagedList(pageIndex, PageSize);
 
             return View(result);
-        }        
+        }
+
+        [HttpPost]
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
