@@ -10,7 +10,7 @@ namespace Accounting.Helper
 {
     public static class EnumHtmlExtensions
     {
-        public static string GetDisplayName(this HtmlHelper helper, Enum enumType)
+        public static string GetEnumDisplayName(this HtmlHelper helper, Enum enumType)
         {
             return enumType.GetType()
                         .GetMember(enumType.ToString())
