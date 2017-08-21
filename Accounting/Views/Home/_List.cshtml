@@ -1,4 +1,5 @@
-﻿@model IPagedList<Accounting.Models.ViewModels.AccountingViewModel>
+﻿@using Accounting.Helper
+@model IPagedList<Accounting.Models.ViewModels.AccountingViewModel>
 
 <div class="row">
     <div class="col-md-12">
@@ -18,7 +19,7 @@
             {
                 <tr>
                     <td>@(Model.PageSize * (Model.PageNumber-1) + ++i)</td>
-                    <td>@item.Category</td>
+                    <td>@Html.GetEnumDisplayName(item.Category)</td>
                     <td>@(item.AccountingDate.ToString("yyyy-MM-dd"))</td>
                     <td>@item.Amount.ToString("N0")</td>
                 </tr>

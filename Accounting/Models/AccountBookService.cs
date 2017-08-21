@@ -23,7 +23,7 @@ namespace Accounting.Models
             var query = _accountBookRep.LookupAll();
             var result = query.Select(accountBook => new AccountingViewModel()
             {
-                 Category = accountBook.Categoryyy == 0 ? "支出" : "收入",
+                 Category = (Category)accountBook.Categoryyy,
                  AccountingDate = accountBook.Dateee,
                  Amount = accountBook.Amounttt,
             }).ToList();
@@ -36,7 +36,7 @@ namespace Accounting.Models
             var result = new AccountBook()
             {
                 Id = Guid.NewGuid(),
-                Categoryyy = accountingViewModel.Category == "支出" ? 0 : 1,
+                Categoryyy = accountingViewModel.Category.GetHashCode(),
                 Dateee = accountingViewModel.AccountingDate,
                 Amounttt = accountingViewModel.Amount,
                 Remarkkk = "",
