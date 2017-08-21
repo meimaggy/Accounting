@@ -10,5 +10,6 @@ namespace Accounting.Models.ViewModels
         public Category Category { get; set; }
         public DateTime AccountingDate { get; set; }
         public int Amount { get; set; }
+        public string Remark { get; set; }
     }
 }
