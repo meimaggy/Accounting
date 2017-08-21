@@ -21,11 +21,11 @@ namespace Accounting.Controllers
             _accountBookService = new AccountBookService(unitOfWork);
         }
 
-        public ActionResult Index(int page = 0)
+        public ActionResult Index(int? page)
         {
             var query = _accountBookService.Lookup();
 
-            var pageIndex = page <= 0 ? 0 : page - 1;
+            var pageIndex = page == null || page == 0 ? 0 : (int)page - 1;
 
             var result = query.ToPagedList(pageIndex, PageSize);
 
