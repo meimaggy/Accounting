@@ -1,9 +1,62 @@
-﻿@model IPagedList<Accounting.Models.ViewModels.AccountingViewModel>
+﻿@model Accounting.Models.ViewModels.AccountingViewModel
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";    
 }
 
+@using (Html.BeginForm("Create", "Home"))
+{
+    @Html.AntiForgeryToken()
+    <div id="createSection">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Category, new { @for = "category", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EnumDropDownListFor(model => model.Category, null, new { @class = "form-control", id = "category" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Amount, new { @for = "edAmount", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { id = "edAmount", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.AccountingDate, new { @for = "edAccountingDate", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.EditorFor(model => model.AccountingDate, new { htmlAttributes = new { id = "edAccountingDate", @class = "form-control", type = "date", max = DateTime.Today.ToString("yyyy/MM/dd") } })
+                                @Html.ValidationMessageFor(model => model.AccountingDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Remark, new { @for = "edRemark", @class = "col-sm-2 control-label" })
+                            <div class="col-sm-10">
+                                @Html.TextAreaFor(model => model.Remark, 3, 100, new { id = "edRemark", @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-8 col-sm-4">
+                                <button class="btn btn-default">送出</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    
+<div id="listSection">
+    @Html.Action("List", "Home")
+</div>
 
-@Html.Partial("Create")
-@Html.Partial("_List")  
+@Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.min.js")
+@Scripts.Render("~/Scripts/jquery.validate.unobtrusive.min.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")

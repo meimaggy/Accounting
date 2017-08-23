@@ -21,21 +21,34 @@ namespace Accounting.Controllers
             _accountBookService = new AccountBookService(unitOfWork);
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(AccountingViewModel data)
+        {
+            if (ModelState.IsValid)
+            {
+                _accountBookService.Add(data);
+                _accountBookService.Save();
+
+                return RedirectToAction("Index");
+            }
+
+            return PartialView(data);
+        }
+
+        public ActionResult List(int? page)
         {
             var query = _accountBookService.Lookup();
 
             var pageIndex = page == null || page == 0 ? 0 : (int)page - 1;
 
-            var result = query.ToPagedList(pageIndex, PageSize);
+            var result = query.OrderByDescending(o => o.AccountingDate).ToPagedList(pageIndex, PageSize);
 
-            return View(result);
-        }
-
-        [HttpPost]
-        public ActionResult Create()
-        {
-            return View();
+            return PartialView("_List", result);
         }
 
         public ActionResult About()
